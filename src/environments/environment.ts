@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  dbUserName: "cfcfWlcJVm",
+  dbName: "cfcfWlcJVm",
+  dbPassword: "eu6WiXZB2W",
+  dbServer: "remotemysql.com",
+  dbPort: 3306
 };
 
 /*
