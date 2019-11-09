@@ -18,7 +18,10 @@
       "es2018",
       "dom",
       "esnext.asynciterable"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
