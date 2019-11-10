@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from '../graphql/graphql.module';
+
+import { AuthModule } from './auth/auth.module';
 
 import { CalculatorModule } from './calculator/calculator.module';
 
@@ -18,7 +19,8 @@ import { CalculatorModule } from './calculator/calculator.module';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
-    CalculatorModule
+    CalculatorModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
