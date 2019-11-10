@@ -3,7 +3,7 @@ export type Test = {
     name: string;
 }
 
-export type Student = {
+export type Car = {
     id: number;
     name: string;
     tests: Test[];
@@ -17,12 +17,12 @@ export type StudentsTests = {
 
 export type Query = {
     tests: Test[];
-    students: Student[];
-    studentsTests: Student;
+    cars: Car[];
+    studentsTests: Car;
 }
 
 export type Mutation = {
     createTest: Test
-    createStudent: Student
+    createCar: Car
     addTestToStudent: StudentsTests
 }

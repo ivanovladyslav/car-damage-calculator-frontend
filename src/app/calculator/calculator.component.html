@@ -1,0 +1,12 @@
+<div>
+    Calculator
+    <p-autoComplete type="text" 
+                    [suggestions]="suggestions" 
+                    (completeMethod)="searchSuggestions($event)">
+
+    </p-autoComplete>
+    <p-autoComplete type="text">
+
+    </p-autoComplete>
+    <p-dropdown [options]="cities2" optionLabel="name"></p-dropdown>
+</div>
