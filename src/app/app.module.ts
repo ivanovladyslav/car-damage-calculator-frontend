@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GraphQLModule } from '../graphql/graphql.module';
 
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from '@app/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
