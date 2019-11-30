@@ -3,10 +3,9 @@ export type Test = {
     name: string;
 }
 
-export type Student = {
+export type Trailer = {
     id: number;
     name: string;
-    tests: Test[];
 }
 
 export type StudentsTests = {
@@ -17,12 +16,11 @@ export type StudentsTests = {
 
 export type Query = {
     tests: Test[];
-    students: Student[];
-    studentsTests: Student;
+    trailers: Trailer[];
 }
 
-export type Mutation = {
-    createTest: Test
-    createStudent: Student
-    addTestToStudent: StudentsTests
-}
+// export type Mutation = {
+//     createTest: Test
+//     createStudent: Student
+//     addTestToStudent: StudentsTests
+// }

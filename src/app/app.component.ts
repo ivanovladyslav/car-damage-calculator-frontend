@@ -15,25 +15,6 @@ export class AppComponent implements OnInit{
   constructor(private apollo: Apollo) {}
 
   async ngOnInit(): Promise<void> {
-    try {
-      const { data } = await this.apollo.mutate({
-        mutation: gql`
-          query studentsTests($studentId: Int!) {
-            studentsTests(studentId: $studentId) {
-              name
-              tests {
-                name
-              }
-            }
-          }
-        `,
-        variables: {
-          studentId: 1
-        }
-      }).toPromise();
-      console.log(data);
-    } catch(e) {
-      console.error(e);
-    }
+    
   }
 }

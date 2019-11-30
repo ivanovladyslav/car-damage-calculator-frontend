@@ -1,0 +1,5 @@
+query trailers($trailerId: Int!) {
+    trailers(trailerId: $trailerId) {
+        name
+    }
+}

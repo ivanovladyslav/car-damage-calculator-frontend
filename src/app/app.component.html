@@ -1,5 +1,11 @@
-<div>main-page</div>
-<router-outlet name="dashboard"></router-outlet>
-<div>
-    <router-outlet></router-outlet>
+<div class="header">
+    <div class="header__auth">
+        <a class="header__auth-link">Войти</a>
+    </div>
+</div>
+<div class="container">
+    <router-outlet name="dashboard"></router-outlet>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
 </div>

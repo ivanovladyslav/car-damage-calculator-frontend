@@ -1,0 +1,14 @@
+.header {
+    height: 30px;
+    padding: 5px;
+    width: 100%;
+    background-color: #007ad9;
+    margin-bottom: 20px;
+    &__auth {
+        float: right;
+        &-link {
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
