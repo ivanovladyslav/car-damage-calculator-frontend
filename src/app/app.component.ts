@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-import { Test, Query, Mutation } from '../graphql/types';
+import { Test, Query } from '../graphql/types';
 
 @Component({
   selector: 'app-root',
