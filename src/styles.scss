@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import 'primeng/resources/themes/nova-light/theme.css';
+@import '~primeicons/primeicons.css';
 
 @import 'assets/styles/reset.scss';
 @import 'assets/styles/layout.scss';
 @import 'assets/styles/header.scss';
 @import 'assets/styles/tabs.scss';
+@import 'assets/styles/elements.scss';

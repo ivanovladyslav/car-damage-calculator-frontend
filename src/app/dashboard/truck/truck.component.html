@@ -1,1 +1,12 @@
-<div>TRUCK PAGE</div>
+<br>
+<form>
+    <p-autoComplete [(ngModel)]="vehicle" [ngModelOptions]="{standalone: true}" field="name" [suggestions]="filteredVehicles" (completeMethod)="filterVehicles($event)" [size]="30"
+        [minLength]="1" placeholder="Начните писать название тягача" [dropdown]="true">
+        <ng-template let-vehicle pTemplate="item">
+            <div class="ui-helper-clearfix" style="list-style: none; border-bottom:1px solid #D5D5D5">
+                <div>{{vehicle.name}}</div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
+    <span style="margin-left:50px">Тягач: {{vehicle.id||'none'}}</span>
+</form>
