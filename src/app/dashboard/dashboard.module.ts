@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 import { DashboardRoutingModule } from '@app/dashboard/dashboard-routing.module';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
@@ -19,6 +21,8 @@ import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
     ],
     imports: [
         FormsModule,
+        InputTextModule,
+        SelectButtonModule,
         AutoCompleteModule,
         TabMenuModule,
         DashboardRoutingModule,

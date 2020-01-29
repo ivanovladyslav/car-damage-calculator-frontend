@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { SelectItem } from 'primeng/api';
 
 interface Vehicle {
     id: string;
@@ -16,6 +17,8 @@ interface VehiclesList {
     templateUrl: './truck.component.html'
 })
 export class TruckComponent implements OnInit {
+    types: SelectItem[];
+
     truck: any;
 
     trucks: Array<any>;
@@ -26,7 +29,12 @@ export class TruckComponent implements OnInit {
 
     vehicle: Vehicle = { id: null, name: ''};
 
-    constructor(private readonly apollo: Apollo) {}
+    constructor(private readonly apollo: Apollo) {
+        this.types = [
+            {label: 'Тягач', value: 'Тягач'},
+            {label: 'Прицеп', value: 'Прицеп'}
+        ]
+    }
 
     async ngOnInit(): Promise<void> {
         const type = "Тягач";
