@@ -1,5 +1,5 @@
 <br>
-<p-autoComplete [(ngModel)]="vehicle" [ngModelOptions]="{standalone: true}" field="name" [suggestions]="filteredVehicles" (completeMethod)="filterVehicles($event)" [size]="30"
+<p-autoComplete [(ngModel)]="vehicle" [(hidden)]="createMode" name="vehicleId" field="name" [suggestions]="filteredVehicles" (completeMethod)="filterVehicles($event)" [size]="30"
     [minLength]="1" placeholder="Начните писать название тягача" [dropdown]="true">
     <ng-template let-vehicle pTemplate="item">
         <div class="ui-helper-clearfix" style="list-style: none; border-bottom:1px solid #D5D5D5">
@@ -7,10 +7,59 @@
         </div>
     </ng-template>
 </p-autoComplete>
-<span style="margin-left:50px">Тягач: {{vehicle.id||'none'}}</span>
-<form>
-    <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText placeholder="Название"> 
+<button pButton *ngIf="!createMode" label="Добавить" (click)="createModeOn()" style="margin-left: 15px;"></button>
+<form *ngIf="vehicle">
+    <span class="vehicle-input ui-float-label">
+        <input name="vehicleName" type="text" size="30" pInputText [(ngModel)]="vehicle.name"> 
+        <label for="float-input">Название</label>
+        <button pButton *ngIf="createMode" label="Отменить" (click)="createModeOff()"></button>
     </span>
-    <p-selectButton class="vehicle-type" [options]="types" [(ngModel)]="selectedType"></p-selectButton>
+    <p-selectButton class="vehicle-type" name="vehicleType" styleClass="vehicle-input" [options]="types" [(ngModel)]="vehicle.type"></p-selectButton>
+    <span class="vehicle-input ui-float-label">
+        <input name="basicWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.basicWeight"> 
+        <label for="float-input">Вес снаряженного</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="maxCargoWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.maxCargoWeight"> 
+        <label for="float-input">Максимальный вес груза</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="fillWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.fullWeight"> 
+        <label for="float-input">Вес полностью груженого</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="length" type="number" size="10" pInputText [(ngModel)]="vehicle.length"> 
+        <label for="float-input">Длина</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="width" type="number" size="10" pInputText [(ngModel)]="vehicle.width"> 
+        <label for="float-input">Ширина</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="height" type="number" size="10" pInputText [(ngModel)]="vehicle.height"> 
+        <label for="float-input">Высота</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input name="axisDistances" type="text" size="30" pInputText [(ngModel)]="vehicle.axisDistances"> 
+        <label for="float-input">Дистанции между осями</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input class="input-wide" name="frontAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisBasicWeight"> 
+        <label for="float-input">Нагрузка на переднюю ось снаряженного</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input class="input-wide" name="frontAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisFullWeight"> 
+        <label for="float-input">Нагрузка на переднюю ось полностью груженого</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input class="input-wide" name="backAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisBasicWeight"> 
+        <label for="float-input">Нагрузка на заднюю ось снаряженного</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
+        <input class="input-wide" name="backAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisFullWeight"> 
+        <label for="float-input">Нагрузка на заднюю ось полностью груженого</label>
+    </span>
+    <button pButton *ngIf="createMode" label="Создать" class="ui-button-success" (click)="createVehicle()"></button>
+    <button pButton *ngIf="!createMode" label="Обновить" (click)="updateVehicle()"></button>
+    <button pButton *ngIf="!createMode" label="Удалить" class="ui-button-danger" (click)="deleteVehicle()"></button>
 </form>

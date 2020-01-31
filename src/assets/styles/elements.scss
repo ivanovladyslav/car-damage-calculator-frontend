@@ -6,6 +6,14 @@
 .ui-autocomplete-list {
     list-style: none;
 }
-.vehicle-type {
-    width: 40px;
+.input-wide {
+    width: 350px;
+}
+.vehicle {
+    &-type {
+        width: 40px;
+    }
+    &-input {
+        margin-top: 15px;
+    }
 }
