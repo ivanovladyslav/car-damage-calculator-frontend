@@ -11,12 +11,8 @@ export class DashboardComponent {
     ngOnInit() {
         this.items = [
             { 
-                label: 'Тягачи',
-                routerLink: ['/dashboard/truck']
-            },
-            { 
-                label: 'Прицепы',
-                routerLink: ['/dashboard/trailer']
+                label: 'Транспортные средства',
+                routerLink: ['/dashboard/vehicle']
             },
             { 
                 label: 'Грузоперевозчики',

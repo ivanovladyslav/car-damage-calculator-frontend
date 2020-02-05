@@ -9,17 +9,18 @@ import { ButtonModule } from 'primeng/button';
 
 import { DashboardRoutingModule } from '@app/dashboard/dashboard-routing.module';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
-import { TruckComponent } from '@app/dashboard/truck/truck.component';
+import { VehicleComponent } from '@app/dashboard/vehicle/vehicle.component';
 import { TrailerModule } from '@app/dashboard/trailer/trailer.module';
-import { CalculatorModule } from '@app/dashboard/calculator/calculator.module';
 
 import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
+import { CalculatorComponent } from '@app/dashboard/calculator/calculator.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         CarrierComponent,
-        TruckComponent
+        VehicleComponent,
+        CalculatorComponent
     ],
     imports: [
         CommonModule,
@@ -30,7 +31,6 @@ import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
         TabMenuModule,
         DashboardRoutingModule,
         TrailerModule,
-        CalculatorModule,
         ButtonModule
     ]
 })

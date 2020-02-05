@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { SelectItem } from 'primeng/api';
@@ -25,15 +25,13 @@ interface VehiclesList {
 }
 
 @Component({
-    selector: 'truck',
-    templateUrl: './truck.component.html'
+    selector: 'vehicle',
+    templateUrl: './vehicle.component.html'
 })
-export class TruckComponent implements OnInit {
+export class VehicleComponent implements OnInit {
+    @Input() type: string;
+
     types: SelectItem[];
-
-    truck: any;
-
-    trucks: Array<any>;
 
     vehicles: Vehicle[];
 
@@ -41,7 +39,9 @@ export class TruckComponent implements OnInit {
 
     vehicle: Vehicle;
 
-    createMode: boolean = false;
+    editMode: boolean = false;
+
+    vehicleType: string = 'Тягач';
 
     constructor(private readonly apollo: Apollo) {
         this.types = [
@@ -50,11 +50,13 @@ export class TruckComponent implements OnInit {
         ]
     }
 
-    async ngOnInit(): Promise<void> {
-        const type = "Тягач";
+    ngOnInit(): void {
+        this.getVehicles();
+    }
 
+    async getVehicles(): Promise<void> {
         const { data } = await this.apollo.query<VehiclesList>({
-            variables: { type },
+            variables: { type: this.type || this.vehicleType },
             query: gql`
                 query vehicles($type: String!) {
                     vehicles(type: $type) {
@@ -74,7 +76,8 @@ export class TruckComponent implements OnInit {
                         backAxisFullWeight
                     }
                 }
-            `
+            `,
+            fetchPolicy: 'no-cache'
         }).toPromise();
 
         this.vehicles = data.vehicles;
@@ -121,7 +124,48 @@ export class TruckComponent implements OnInit {
                         backAxisFullWeight: this.vehicle.backAxisFullWeight
                     }
                 }
-            }).toPromise();
+            }).toPromise()
+
+            this.getVehicles();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async upsertVehicle(): Promise<void> {
+        console.log("create")
+        console.log(this.vehicle);
+
+        try {
+            await this.apollo.mutate<any, any>({
+                mutation: gql`
+                    mutation upsertVehicle($input: VehicleInput) {
+                        upsertVehicle(input: $input) {
+                            name
+                        }
+                    }
+                `,
+                variables: {
+                    input: {
+                        name: this.vehicle.name,
+                        type: this.vehicle.type,
+                        basicWeight: this.vehicle.basicWeight,
+                        maxCargoWeight: this.vehicle.maxCargoWeight,
+                        fullWeight: this.vehicle.fullWeight,
+                        length: this.vehicle.length,
+                        width: this.vehicle.width,
+                        height: this.vehicle.height,
+                        axisDistances: this.vehicle.axisDistances,
+                        frontAxisBasicWeight: this.vehicle.frontAxisBasicWeight,
+                        frontAxisFullWeight: this.vehicle.frontAxisFullWeight,
+                        backAxisBasicWeight: this.vehicle.backAxisBasicWeight,
+                        backAxisFullWeight: this.vehicle.backAxisFullWeight
+                    }
+                }
+            }).toPromise()
+
+            this.getVehicles();
+            this.editModeOff();
         } catch (e) {
             console.log(e);
         }
@@ -142,13 +186,16 @@ export class TruckComponent implements OnInit {
                     id: this.vehicle.id
                 }
             }).toPromise();
+
+            this.getVehicles();
+            this.editModeOff()
         } catch (e) {
             console.log(e);
         } 
     }
 
-    createModeOn(): void {
-        this.createMode = true;
+    editModeOn(): void {
+        this.editMode = true;
         this.vehicle = {
             id: '',
             name: '',
@@ -167,8 +214,8 @@ export class TruckComponent implements OnInit {
         };
     }
 
-    createModeOff(): void {
-        this.createMode = false;
+    editModeOff(): void {
+        this.editMode = false;
         this.vehicle = null;
     }
 }

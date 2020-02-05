@@ -1,18 +1,23 @@
 <br>
-<p-autoComplete [(ngModel)]="vehicle" [(hidden)]="createMode" name="vehicleId" field="name" [suggestions]="filteredVehicles" (completeMethod)="filterVehicles($event)" [size]="30"
-    [minLength]="1" placeholder="Начните писать название тягача" [dropdown]="true">
+<p-autoComplete [(ngModel)]="vehicle" [(hidden)]="editMode" name="vehicleId" field="name" [suggestions]="filteredVehicles" (completeMethod)="filterVehicles($event)" [size]="30"
+    [minLength]="1" placeholder="Начните писать название средства" [dropdown]="true">
     <ng-template let-vehicle pTemplate="item">
         <div class="ui-helper-clearfix" style="list-style: none; border-bottom:1px solid #D5D5D5">
             <div>{{vehicle.name}}</div>
         </div>
     </ng-template>
 </p-autoComplete>
-<button pButton *ngIf="!createMode" label="Добавить" (click)="createModeOn()" style="margin-left: 15px;"></button>
+<button pButton *ngIf="!editMode" label="Добавить" (click)="editModeOn()" class="btn-control" style="margin-left: 15px;"></button>
+<ng-container *ngIf="vehicle">
+    <button pButton *ngIf="editMode" label="Создать" class="btn-control ui-button-success" (click)="upsertVehicle()"></button>
+    <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="updateVehicle()"></button>
+    <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="deleteVehicle()"></button>
+</ng-container>
 <form *ngIf="vehicle">
     <span class="vehicle-input ui-float-label">
         <input name="vehicleName" type="text" size="30" pInputText [(ngModel)]="vehicle.name"> 
         <label for="float-input">Название</label>
-        <button pButton *ngIf="createMode" label="Отменить" (click)="createModeOff()"></button>
+        <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
     </span>
     <p-selectButton class="vehicle-type" name="vehicleType" styleClass="vehicle-input" [options]="types" [(ngModel)]="vehicle.type"></p-selectButton>
     <span class="vehicle-input ui-float-label">
@@ -59,7 +64,4 @@
         <input class="input-wide" name="backAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisFullWeight"> 
         <label for="float-input">Нагрузка на заднюю ось полностью груженого</label>
     </span>
-    <button pButton *ngIf="createMode" label="Создать" class="ui-button-success" (click)="createVehicle()"></button>
-    <button pButton *ngIf="!createMode" label="Обновить" (click)="updateVehicle()"></button>
-    <button pButton *ngIf="!createMode" label="Удалить" class="ui-button-danger" (click)="deleteVehicle()"></button>
 </form>
