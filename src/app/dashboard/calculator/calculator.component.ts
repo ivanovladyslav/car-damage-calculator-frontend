@@ -11,7 +11,7 @@ export class CalculatorComponent implements AfterViewInit {
     @ViewChild("truck", { static: false }) truck: VehicleComponent;
     @ViewChild("trailer", { static: false }) trailer: VehicleComponent;
 
-    cargoWeight: number = 0;
+    cargoWeight: string;
 
     constructor(private readonly apollo: Apollo) {}
 
@@ -23,7 +23,7 @@ export class CalculatorComponent implements AfterViewInit {
             variables: { 
                 truckId: this.truck.vehicle.id, 
                 trailerId: this.trailer.vehicle.id,
-                cargoWeight: this.cargoWeight
+                cargoWeight: parseInt(this.cargoWeight)
              },
             query: gql`
                 query calculation($truckId: String!, $trailerId: String!, $cargoWeight: Int!) {
@@ -31,7 +31,8 @@ export class CalculatorComponent implements AfterViewInit {
                         amount
                     }
                 }
-            `
+            `,
+            fetchPolicy: 'no-cache'
         }).toPromise();
 
 
