@@ -14,10 +14,13 @@ interface Vehicle {
     width: number;
     height: number;
     axisDistances: string;
+    frontAxisDoubleWheels: boolean;
+    backAxisDoubleWheels: boolean;
     frontAxisBasicWeight: number;
     frontAxisFullWeight: number;
     backAxisBasicWeight: number;
     backAxisFullWeight: number;
+    saddleDevice: boolean;
 }
 
 interface VehiclesList {
@@ -70,10 +73,13 @@ export class VehicleComponent implements OnInit {
                         width
                         height
                         axisDistances
+                        frontAxisDoubleWheels
+                        backAxisDoubleWheels
                         frontAxisBasicWeight
                         frontAxisFullWeight
                         backAxisBasicWeight
                         backAxisFullWeight
+                        saddleDevice
                     }
                 }
             `,
@@ -118,10 +124,13 @@ export class VehicleComponent implements OnInit {
                         width: this.vehicle.width,
                         height: this.vehicle.height,
                         axisDistances: this.vehicle.axisDistances,
+                        frontAxisDoubleWheels: this.vehicle.frontAxisDoubleWheels,
+                        backAxisDoubleWheels: this.vehicle.backAxisDoubleWheels,
                         frontAxisBasicWeight: this.vehicle.frontAxisBasicWeight,
                         frontAxisFullWeight: this.vehicle.frontAxisFullWeight,
                         backAxisBasicWeight: this.vehicle.backAxisBasicWeight,
-                        backAxisFullWeight: this.vehicle.backAxisFullWeight
+                        backAxisFullWeight: this.vehicle.backAxisFullWeight,
+                        saddleDevice: this.vehicle.saddleDevice
                     }
                 }
             }).toPromise()
@@ -156,10 +165,13 @@ export class VehicleComponent implements OnInit {
                         width: this.vehicle.width,
                         height: this.vehicle.height,
                         axisDistances: this.vehicle.axisDistances,
+                        frontAxisDoubleWheels: this.vehicle.frontAxisDoubleWheels,
+                        backAxisDoubleWheels: this.vehicle.backAxisDoubleWheels,
                         frontAxisBasicWeight: this.vehicle.frontAxisBasicWeight,
                         frontAxisFullWeight: this.vehicle.frontAxisFullWeight,
                         backAxisBasicWeight: this.vehicle.backAxisBasicWeight,
-                        backAxisFullWeight: this.vehicle.backAxisFullWeight
+                        backAxisFullWeight: this.vehicle.backAxisFullWeight,
+                        saddleDevice: this.vehicle.saddleDevice
                     }
                 }
             }).toPromise()
@@ -207,10 +219,13 @@ export class VehicleComponent implements OnInit {
             width: null,
             height: null,
             axisDistances: '',
+            frontAxisDoubleWheels: false,
+            backAxisDoubleWheels: false,
             frontAxisBasicWeight: null,
             frontAxisFullWeight: null,
             backAxisBasicWeight: null,
-            backAxisFullWeight: null
+            backAxisFullWeight: null,
+            saddleDevice: false
         };
     }
 

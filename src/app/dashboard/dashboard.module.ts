@@ -6,6 +6,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox'
 
 import { DashboardRoutingModule } from '@app/dashboard/dashboard-routing.module';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
@@ -31,7 +32,8 @@ import { CalculatorComponent } from '@app/dashboard/calculator/calculator.compon
         TabMenuModule,
         DashboardRoutingModule,
         TrailerModule,
-        ButtonModule
+        ButtonModule,
+        CheckboxModule
     ]
 })
 export class DashboardModule {

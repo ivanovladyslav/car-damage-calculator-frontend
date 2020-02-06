@@ -48,20 +48,32 @@
         <input name="axisDistances" type="text" size="30" pInputText [(ngModel)]="vehicle.axisDistances"> 
         <label for="float-input">Дистанции между осями</label>
     </span>
+    <span class="vehicle-input">
+        <p-checkbox name="frontAxisDoubleWheels" [(ngModel)]="vehicle.frontAxisDoubleWheels" binary="true"></p-checkbox>
+        <label>Двускатн./пневмо - ПЕРЕД</label>
+    </span>
+    <span class="vehicle-input">
+        <p-checkbox name="backAxisDoubleWheels" [(ngModel)]="vehicle.backAxisDoubleWheels" binary="true"></p-checkbox>
+        <label>Двускатн./пневмо - ЗАД</label>
+    </span>
     <span class="vehicle-input ui-float-label">
         <input class="input-wide" name="frontAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisBasicWeight"> 
         <label for="float-input">Нагрузка на переднюю ось снаряженного</label>
-    </span>
-    <span class="vehicle-input ui-float-label">
-        <input class="input-wide" name="frontAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisFullWeight"> 
-        <label for="float-input">Нагрузка на переднюю ось полностью груженого</label>
     </span>
     <span class="vehicle-input ui-float-label">
         <input class="input-wide" name="backAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisBasicWeight"> 
         <label for="float-input">Нагрузка на заднюю ось снаряженного</label>
     </span>
     <span class="vehicle-input ui-float-label">
+        <input class="input-wide" name="frontAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisFullWeight"> 
+        <label for="float-input">Нагрузка на переднюю ось полностью груженого</label>
+    </span>
+    <span class="vehicle-input ui-float-label">
         <input class="input-wide" name="backAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisFullWeight"> 
         <label for="float-input">Нагрузка на заднюю ось полностью груженого</label>
+    </span>
+    <span class="vehicle-input">
+        <p-checkbox name="saddleDevice" [(ngModel)]="vehicle.saddleDevice" binary="true"></p-checkbox>
+        <label>Седельное устройство</label>
     </span>
 </form>
