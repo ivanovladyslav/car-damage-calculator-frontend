@@ -45,8 +45,10 @@ export class CalculatorComponent implements AfterViewInit {
     }
 
     addVehicle(): void {
-        this.vehicles.push(
-            new Vehicle()
-        );
+        this.vehicles.push(new Vehicle());
+    }
+
+    removeVehicle(): void {
+        this.vehicles.pop();
     }
 }

@@ -10,10 +10,25 @@
     width: 350px;
 }
 .vehicle {
+    &-container {
+        background-color: cornsilk;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
     &-type {
         width: 40px;
     }
     &-input {
+        display: inline-block;
+        margin-top: 15px;
+        &:not(:first-child) {
+            margin-left: 15px;
+        }
+    }
+}
+.document {
+    &-element {
         display: block;
         margin-top: 15px;
     }
