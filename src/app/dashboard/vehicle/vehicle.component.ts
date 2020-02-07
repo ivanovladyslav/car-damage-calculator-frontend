@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { SelectItem } from 'primeng/api';
 
-interface Vehicle {
+export class Vehicle {
     id: string;
     name: string | null;
     type: 'Тягач' | 'Прицеп' | ''; 
@@ -21,6 +21,26 @@ interface Vehicle {
     backAxisBasicWeight: number;
     backAxisFullWeight: number;
     saddleDevice: boolean;
+
+    constructor() {
+        this.id = '';
+        this.name = '';
+        this.type = '';
+        this.basicWeight = null;
+        this.maxCargoWeight = null;
+        this.fullWeight = null;
+        this.length = null;
+        this.width = null;
+        this.height = null;
+        this.axisDistances = '';
+        this.frontAxisDoubleWheels = false;
+        this.backAxisDoubleWheels = false;
+        this.frontAxisBasicWeight = null;
+        this.frontAxisFullWeight = null;
+        this.backAxisBasicWeight = null;
+        this.backAxisFullWeight = null;
+        this.saddleDevice = false;
+    }
 }
 
 interface VehiclesList {
@@ -44,8 +64,6 @@ export class VehicleComponent implements OnInit {
 
     editMode: boolean = false;
 
-    vehicleType: string = 'Тягач';
-
     constructor(private readonly apollo: Apollo) {
         this.types = [
             {label: 'Тягач', value: 'Тягач'},
@@ -59,10 +77,9 @@ export class VehicleComponent implements OnInit {
 
     async getVehicles(): Promise<void> {
         const { data } = await this.apollo.query<VehiclesList>({
-            variables: { type: this.type || this.vehicleType },
             query: gql`
-                query vehicles($type: String!) {
-                    vehicles(type: $type) {
+                query vehicles {
+                    vehicles {
                         id
                         name
                         type
@@ -208,25 +225,7 @@ export class VehicleComponent implements OnInit {
 
     editModeOn(): void {
         this.editMode = true;
-        this.vehicle = {
-            id: '',
-            name: '',
-            type: '',
-            basicWeight: null,
-            maxCargoWeight: null,
-            fullWeight: null,
-            length: null,
-            width: null,
-            height: null,
-            axisDistances: '',
-            frontAxisDoubleWheels: false,
-            backAxisDoubleWheels: false,
-            frontAxisBasicWeight: null,
-            frontAxisFullWeight: null,
-            backAxisBasicWeight: null,
-            backAxisFullWeight: null,
-            saddleDevice: false
-        };
+        this.vehicle = new Vehicle();
     }
 
     editModeOff(): void {

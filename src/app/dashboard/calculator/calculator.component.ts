@@ -1,5 +1,5 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { VehicleComponent } from '../vehicle/vehicle.component';
+import { Component, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { VehicleComponent, Vehicle } from '../vehicle/vehicle.component';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
@@ -8,10 +8,12 @@ import gql from 'graphql-tag';
     templateUrl: './calculator.component.html'
 })
 export class CalculatorComponent implements AfterViewInit {
-    @ViewChild("truck", { static: false }) truck: VehicleComponent;
-    @ViewChild("trailer", { static: false }) trailer: VehicleComponent;
+    @ViewChildren(VehicleComponent) vehiclesForms: QueryList<VehicleComponent>; 
+    // @ViewChild("trailer", { static: false }) trailer: VehicleComponent;
 
     cargoWeight: string;
+
+    vehicles: Array<Vehicle> = [];
 
     constructor(private readonly apollo: Apollo) {}
 
@@ -19,15 +21,18 @@ export class CalculatorComponent implements AfterViewInit {
     }
 
     async makeCalculation(): Promise<void> {
+        const vehicleIDs = await this.vehiclesForms.toArray().map((vf) => {
+            return vf.vehicle.id;
+        });
+        console.log(vehicleIDs);
         const { data } = await this.apollo.query<any>({
             variables: { 
-                truckId: this.truck.vehicle.id, 
-                trailerId: this.trailer.vehicle.id,
+                vehicleIDs: vehicleIDs,
                 cargoWeight: parseInt(this.cargoWeight)
              },
             query: gql`
-                query calculation($truckId: String!, $trailerId: String!, $cargoWeight: Int!) {
-                    calculation(truckId: $truckId, trailerId: $trailerId, cargoWeight: $cargoWeight) {
+                query calculation($vehicleIDs: [String], $cargoWeight: Int!) {
+                    calculation(vehicleIDs: $vehicleIDs, cargoWeight: $cargoWeight) {
                         amount
                     }
                 }
@@ -37,5 +42,11 @@ export class CalculatorComponent implements AfterViewInit {
 
 
         console.log(data);
+    }
+
+    addVehicle(): void {
+        this.vehicles.push(
+            new Vehicle()
+        );
     }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
@@ -33,7 +33,8 @@ import { CalculatorComponent } from '@app/dashboard/calculator/calculator.compon
         DashboardRoutingModule,
         TrailerModule,
         ButtonModule,
-        CheckboxModule
+        CheckboxModule,
+        ReactiveFormsModule
     ]
 })
 export class DashboardModule {

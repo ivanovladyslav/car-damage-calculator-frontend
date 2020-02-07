@@ -7,12 +7,15 @@
         </div>
     </ng-template>
 </p-autoComplete>
+
 <button pButton *ngIf="!editMode" label="Добавить" (click)="editModeOn()" class="btn-control" style="margin-left: 15px;"></button>
+
 <ng-container *ngIf="vehicle">
     <button pButton *ngIf="editMode" label="Создать" class="btn-control ui-button-success" (click)="upsertVehicle()"></button>
     <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="updateVehicle()"></button>
     <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="deleteVehicle()"></button>
 </ng-container>
+
 <form *ngIf="vehicle">
     <span class="vehicle-input ui-float-label">
         <input name="vehicleName" type="text" size="30" pInputText [(ngModel)]="vehicle.name"> 

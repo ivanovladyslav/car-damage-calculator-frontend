@@ -1,5 +1,5 @@
-<vehicle #truck [type]="'Тягач'" ></vehicle>
-<vehicle #trailer [type]="'Прицеп'"></vehicle>
+<vehicle #vehicle *ngFor="let vehicle of vehicles"></vehicle>
+<button pButton label="+" class="btn-control ui-button" (click)="addVehicle()"></button>
 <span class="vehicle-input ui-float-label">
     <input name="сargoWeight" type="number" size="20" pInputText [(ngModel)]="cargoWeight"> 
     <label for="float-input">Вес груза</label>
