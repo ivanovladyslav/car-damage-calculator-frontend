@@ -54,6 +54,8 @@ interface VehiclesList {
 export class VehicleComponent implements OnInit {
     @Input() type: string;
 
+    @Input() cargoWeightInput: boolean;
+
     types: SelectItem[];
 
     vehicles: Vehicle[];
@@ -63,6 +65,8 @@ export class VehicleComponent implements OnInit {
     vehicle: Vehicle;
 
     editMode: boolean = false;
+
+    cargoWeight: number = 0;
 
     constructor(private readonly apollo: Apollo) {
         this.types = [

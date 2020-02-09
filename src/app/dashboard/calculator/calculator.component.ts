@@ -15,32 +15,37 @@ export class CalculatorComponent implements AfterViewInit {
 
     vehicles: Array<Vehicle> = [];
 
+    logs: Array<string>;
+
     constructor(private readonly apollo: Apollo) {}
 
     ngAfterViewInit(): void {
     }
 
     async makeCalculation(): Promise<void> {
-        const vehicleIDs = await this.vehiclesForms.toArray().map((vf) => {
-            return vf.vehicle.id;
+        const vehiclesLoads = await this.vehiclesForms.toArray().map((vf) => {
+            return {
+                id: vf.vehicle.id,
+                cargoWeight: vf.cargoWeight
+            };
         });
-        console.log(vehicleIDs);
+        console.log(vehiclesLoads);
         const { data } = await this.apollo.query<any>({
             variables: { 
-                vehicleIDs: vehicleIDs,
-                cargoWeight: parseInt(this.cargoWeight)
-             },
+                vehiclesLoads: vehiclesLoads
+            },
             query: gql`
-                query calculation($vehicleIDs: [String], $cargoWeight: Int!) {
-                    calculation(vehicleIDs: $vehicleIDs, cargoWeight: $cargoWeight) {
+                query calculation($vehiclesLoads: [VehicleLoad]) {
+                    calculation(vehiclesLoads: $vehiclesLoads) {
                         amount
+                        logs
                     }
                 }
             `,
             fetchPolicy: 'no-cache'
         }).toPromise();
 
-
+        this.logs = data.calculation.logs;
         console.log(data);
     }
 

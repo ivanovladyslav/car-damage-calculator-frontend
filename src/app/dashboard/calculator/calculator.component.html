@@ -1,14 +1,16 @@
-<vehicle #vehicle *ngFor="let vehicle of vehicles"></vehicle>
+<vehicle #vehicle [cargoWeightInput]="true" *ngFor="let vehicle of vehicles">
+</vehicle>
 <div class="document-element">
     <button pButton label="+" class="btn-control ui-button" (click)="addVehicle()"></button>
     <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removeVehicle()"></button>
 </div>
 <div class="document-element">
-    <span class="vehicle-input ui-float-label document-element">
-        <input name="сargoWeight" type="number" size="20" pInputText [(ngModel)]="cargoWeight"> 
-        <label for="float-input">Вес груза</label>
-    </span>
 </div>
+<div *ngIf="logs" class="document-element document-logs">
+    <div *ngFor="let log of logs"> 
+        {{log}}
+    </div>
+</div> 
 <div class="document-element">
-        <button pButton label="Сгенерировать отчет" class="btn-control ui-button-success document-element" (click)="makeCalculation()"></button>
+    <button pButton label="Сгенерировать отчет" class="btn-control ui-button-success document-element" (click)="makeCalculation()"></button>
 </div>

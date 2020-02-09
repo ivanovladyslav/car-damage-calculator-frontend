@@ -32,6 +32,13 @@
         display: block;
         margin-top: 15px;
     }
+    &-logs {
+        padding: 15px;
+        border-radius: 5px;
+        width: 100%;
+        background-color: darkgray;
+        display: inline-block;
+    }
 }
 .ui-button.btn {
     &-control {

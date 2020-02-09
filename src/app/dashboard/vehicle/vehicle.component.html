@@ -82,3 +82,8 @@
         </span>
     </form>
 </div>
+
+<span *ngIf="cargoWeightInput && !(vehicle?.saddleDevice && vehicle?.type === 'Тягач')" class="vehicle-input ui-float-label document-element">
+    <input name="сargoWeight" type="number" size="20" pInputText [(ngModel)]="cargoWeight"> 
+    <label for="float-input">Вес груза</label>
+</span>
