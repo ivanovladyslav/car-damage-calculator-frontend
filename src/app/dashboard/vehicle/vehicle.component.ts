@@ -4,43 +4,23 @@ import gql from 'graphql-tag';
 import { SelectItem } from 'primeng/api';
 
 export class Vehicle {
-    id: string;
-    name: string | null;
-    type: 'Тягач' | 'Прицеп' | ''; 
-    basicWeight: number;
-    maxCargoWeight: number;
-    fullWeight: number;
-    length: number;
-    width: number;
-    height: number;
-    axisDistances: string;
-    frontAxisDoubleWheels: boolean;
-    backAxisDoubleWheels: boolean;
-    frontAxisBasicWeight: number;
-    frontAxisFullWeight: number;
-    backAxisBasicWeight: number;
-    backAxisFullWeight: number;
-    saddleDevice: boolean;
-
-    constructor() {
-        this.id = '';
-        this.name = '';
-        this.type = '';
-        this.basicWeight = null;
-        this.maxCargoWeight = null;
-        this.fullWeight = null;
-        this.length = null;
-        this.width = null;
-        this.height = null;
-        this.axisDistances = '';
-        this.frontAxisDoubleWheels = false;
-        this.backAxisDoubleWheels = false;
-        this.frontAxisBasicWeight = null;
-        this.frontAxisFullWeight = null;
-        this.backAxisBasicWeight = null;
-        this.backAxisFullWeight = null;
-        this.saddleDevice = false;
-    }
+    id: string = '';
+    name: string | null = null;
+    type: 'Тягач' | 'Прицеп' | '' = ''; 
+    basicWeight: number = null;
+    maxCargoWeight: number = null;
+    fullWeight: number = null;
+    length: number = null;
+    width: number = null;
+    height: number = null;
+    axisDistances: string = '';
+    frontAxisDoubleWheels: boolean = false;
+    backAxisDoubleWheels: boolean = false;
+    frontAxisBasicWeight: number = null;
+    frontAxisFullWeight: number = null;
+    backAxisBasicWeight: number = null;
+    backAxisFullWeight: number = null;
+    saddleDevice: boolean = false;
 }
 
 interface VehiclesList {
@@ -53,19 +33,13 @@ interface VehiclesList {
 })
 export class VehicleComponent implements OnInit {
     @Input() type: string;
-
     @Input() cargoWeightInput: boolean;
 
-    types: SelectItem[];
-
-    vehicles: Vehicle[];
-
+    types: Array<SelectItem>;
+    vehicles: Array<Vehicle>;
     filteredVehicles: Array<Vehicle>;
-
     vehicle: Vehicle;
-
     editMode: boolean = false;
-
     cargoWeight: number = 0;
 
     constructor(private readonly apollo: Apollo) {

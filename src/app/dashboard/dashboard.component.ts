@@ -15,13 +15,17 @@ export class DashboardComponent {
                 routerLink: ['/dashboard/vehicle']
             },
             { 
+                label: 'Маршруты',
+                routerLink: ['/dashboard/path']
+            },
+            { 
                 label: 'Грузоперевозчики',
                 routerLink: ['/dashboard/carrier']
             },
             { 
                 label: 'Расчет',
                 routerLink: ['/dashboard/calculator']
-            },
+            }
         ]
     }
 }

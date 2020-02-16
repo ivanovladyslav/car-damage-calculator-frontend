@@ -1,5 +1,0 @@
-query trailers($trailerId: Int!) {
-    trailers(id: $trailerId) {
-        name
-    }
-}

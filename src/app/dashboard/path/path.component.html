@@ -1,0 +1,39 @@
+
+<br>
+<p-autoComplete [(ngModel)]="path" [(hidden)]="editMode" name="pathId" field="name" [suggestions]="filteredPaths" (completeMethod)="filter($event)" [size]="30"
+    [minLength]="1" placeholder="Начните писать название маршрута" [dropdown]="true">
+    <ng-template let-path pTemplate="item">
+        <div class="ui-helper-clearfix" style="list-style: none; border-bottom:1px solid #D5D5D5">
+            <div>{{path.name}}</div>
+        </div>
+    </ng-template>
+</p-autoComplete>
+
+<button pButton *ngIf="!editMode" label="Добавить" (click)="editModeOn()" class="btn-control" style="margin-left: 15px;"></button>
+
+<ng-container *ngIf="path">
+    <button pButton *ngIf="editMode" label="Создать" class="btn-control ui-button-success" (click)="upsert()"></button>
+    <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="update()"></button>
+    <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="delete()"></button>
+</ng-container>
+<div class="form-container" *ngIf="path">
+    <form>
+        <span class="form-input ui-float-label">
+            <input name="name" type="text" size="30" pInputText [(ngModel)]="path.name"> 
+            <label for="float-input">Название</label>
+            <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="length" type="number" size="20" pInputText [(ngModel)]="path.length"> 
+            <label for="float-input">Протяженность</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <p-dropdown name="standardAxialLoad" [options]="standardAxialLoads" [(ngModel)]="path.standardAxialLoad" placeholder="Нормативная осевая нагрузка">
+            </p-dropdown>
+        </span>
+        <span class="form-input">
+            <p-checkbox name="soilFreezing" [(ngModel)]="path.soilFreezing" binary="true"></p-checkbox>
+            <label>Промерзание грунта</label>
+        </span>
+    </form>
+</div>

@@ -1,5 +1,6 @@
-import { Component, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 import { VehicleComponent, Vehicle } from '../vehicle/vehicle.component';
+import { Path, PathComponent } from '../path/path.component';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
@@ -7,20 +8,16 @@ import gql from 'graphql-tag';
     selector: 'calculator',
     templateUrl: './calculator.component.html'
 })
-export class CalculatorComponent implements AfterViewInit {
+export class CalculatorComponent {
     @ViewChildren(VehicleComponent) vehiclesForms: QueryList<VehicleComponent>; 
-    // @ViewChild("trailer", { static: false }) trailer: VehicleComponent;
+    @ViewChildren(PathComponent) pathsForms: QueryList<PathComponent>; 
 
     cargoWeight: string;
-
     vehicles: Array<Vehicle> = [];
-
+    paths: Array<Path> = [];
     logs: Array<string>;
 
     constructor(private readonly apollo: Apollo) {}
-
-    ngAfterViewInit(): void {
-    }
 
     async makeCalculation(): Promise<void> {
         const vehiclesLoads = await this.vehiclesForms.toArray().map((vf) => {
@@ -29,14 +26,16 @@ export class CalculatorComponent implements AfterViewInit {
                 cargoWeight: vf.cargoWeight
             };
         });
+        const pathsIDs = await this.pathsForms.toArray().map(pi => pi.path.id);
         console.log(vehiclesLoads);
         const { data } = await this.apollo.query<any>({
             variables: { 
-                vehiclesLoads: vehiclesLoads
+                vehiclesLoads,
+                pathsIDs
             },
             query: gql`
-                query calculation($vehiclesLoads: [VehicleLoad]) {
-                    calculation(vehiclesLoads: $vehiclesLoads) {
+                query calculation($vehiclesLoads: [VehicleLoad], $pathsIDs: [Int]) {
+                    calculation(vehiclesLoads: $vehiclesLoads, pathsIDs: $pathsIDs) {
                         amount
                         logs
                     }
@@ -55,5 +54,13 @@ export class CalculatorComponent implements AfterViewInit {
 
     removeVehicle(): void {
         this.vehicles.pop();
+    }
+    
+    addPath(): void {
+        this.paths.push(new Path());
+    }
+
+    removePath(): void {
+        this.paths.pop();
     }
 }

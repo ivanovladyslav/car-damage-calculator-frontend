@@ -16,74 +16,74 @@
     <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="updateVehicle()"></button>
     <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="deleteVehicle()"></button>
 </ng-container>
-<div class="vehicle-container" *ngIf="vehicle">
+<div class="form-container" *ngIf="vehicle">
     <form>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="vehicleName" type="text" size="30" pInputText [(ngModel)]="vehicle.name"> 
             <label for="float-input">Название</label>
             <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
         </span>
-        <p-selectButton class="vehicle-type" name="vehicleType" styleClass="vehicle-input" [options]="types" [(ngModel)]="vehicle.type"></p-selectButton>
-        <span class="vehicle-input ui-float-label">
+        <p-selectButton class="form-type" name="vehicleType" styleClass="form-input" [options]="types" [(ngModel)]="vehicle.type"></p-selectButton>
+        <span class="form-input ui-float-label">
             <input name="basicWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.basicWeight"> 
             <label for="float-input">Вес снаряженного</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="maxCargoWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.maxCargoWeight"> 
             <label for="float-input">Максимальный вес груза</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="fillWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.fullWeight"> 
             <label for="float-input">Вес полностью груженого</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="length" type="number" size="10" pInputText [(ngModel)]="vehicle.length"> 
             <label for="float-input">Длина</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="width" type="number" size="10" pInputText [(ngModel)]="vehicle.width"> 
             <label for="float-input">Ширина</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="height" type="number" size="10" pInputText [(ngModel)]="vehicle.height"> 
             <label for="float-input">Высота</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input name="axisDistances" type="text" size="30" pInputText [(ngModel)]="vehicle.axisDistances"> 
             <label for="float-input">Дистанции между осями</label>
         </span>
-        <span class="vehicle-input">
+        <span class="form-input">
             <p-checkbox name="frontAxisDoubleWheels" [(ngModel)]="vehicle.frontAxisDoubleWheels" binary="true"></p-checkbox>
             <label>Двускатн./пневмо - ПЕРЕД</label>
         </span>
-        <span class="vehicle-input">
+        <span class="form-input">
             <p-checkbox name="backAxisDoubleWheels" [(ngModel)]="vehicle.backAxisDoubleWheels" binary="true"></p-checkbox>
             <label>Двускатн./пневмо - ЗАД</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input class="input-wide" name="frontAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisBasicWeight"> 
             <label for="float-input">Нагрузка на переднюю ось снаряженного</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input class="input-wide" name="backAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisBasicWeight"> 
             <label for="float-input">Нагрузка на заднюю ось снаряженного</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input class="input-wide" name="frontAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisFullWeight"> 
             <label for="float-input">Нагрузка на переднюю ось полностью груженого</label>
         </span>
-        <span class="vehicle-input ui-float-label">
+        <span class="form-input ui-float-label">
             <input class="input-wide" name="backAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisFullWeight"> 
             <label for="float-input">Нагрузка на заднюю ось полностью груженого</label>
         </span>
-        <span class="vehicle-input">
+        <span class="form-input">
             <p-checkbox name="saddleDevice" [(ngModel)]="vehicle.saddleDevice" binary="true"></p-checkbox>
             <label>Седельное устройство</label>
         </span>
     </form>
 </div>
 
-<span *ngIf="cargoWeightInput && !(vehicle?.saddleDevice && vehicle?.type === 'Тягач')" class="vehicle-input ui-float-label document-element">
+<span *ngIf="cargoWeightInput && !(vehicle?.saddleDevice && vehicle?.type === 'Тягач')" class="form-input ui-float-label document-element">
     <input name="сargoWeight" type="number" size="20" pInputText [(ngModel)]="cargoWeight"> 
     <label for="float-input">Вес груза</label>
 </span>

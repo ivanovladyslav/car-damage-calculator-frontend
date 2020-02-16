@@ -1,10 +1,19 @@
-<vehicle #vehicle [cargoWeightInput]="true" *ngFor="let vehicle of vehicles">
-</vehicle>
+<div class="document-element">
+    <h3>Транспортные средства</h3>
+    <vehicle #vehicle [cargoWeightInput]="true" *ngFor="let vehicle of vehicles">
+    </vehicle>
+</div>
 <div class="document-element">
     <button pButton label="+" class="btn-control ui-button" (click)="addVehicle()"></button>
     <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removeVehicle()"></button>
 </div>
 <div class="document-element">
+    <h3>Маршрут</h3>
+    <path #path *ngFor="let path of paths"></path>
+</div>
+<div class="document-element">
+    <button pButton label="+" class="btn-control ui-button" (click)="addPath()"></button>
+    <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removePath()"></button>
 </div>
 <div *ngIf="logs" class="document-element document-logs">
     <div *ngFor="let log of logs"> 
