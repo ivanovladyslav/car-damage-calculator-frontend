@@ -27,7 +27,7 @@ export class CalculatorComponent {
             };
         });
         const pathsIDs = await this.pathsForms.toArray().map(pi => pi.path.id);
-        console.log(vehiclesLoads);
+        
         const { data } = await this.apollo.query<any>({
             variables: { 
                 vehiclesLoads,

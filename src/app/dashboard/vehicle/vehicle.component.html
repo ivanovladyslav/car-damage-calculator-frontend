@@ -13,6 +13,7 @@
 
 <ng-container *ngIf="vehicle">
     <button pButton *ngIf="editMode" label="Создать" class="btn-control ui-button-success" (click)="upsertVehicle()"></button>
+    <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
     <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="updateVehicle()"></button>
     <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="deleteVehicle()"></button>
 </ng-container>
@@ -21,7 +22,6 @@
         <span class="form-input ui-float-label">
             <input name="vehicleName" type="text" size="30" pInputText [(ngModel)]="vehicle.name"> 
             <label for="float-input">Название</label>
-            <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
         </span>
         <p-selectButton class="form-type" name="vehicleType" styleClass="form-input" [options]="types" [(ngModel)]="vehicle.type"></p-selectButton>
         <span class="form-input ui-float-label">
@@ -30,11 +30,11 @@
         </span>
         <span class="form-input ui-float-label">
             <input name="maxCargoWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.maxCargoWeight"> 
-            <label for="float-input">Максимальный вес груза</label>
+            <label for="float-input">Макс. вес груза</label>
         </span>
         <span class="form-input ui-float-label">
             <input name="fillWeight" type="number" size="20" pInputText [(ngModel)]="vehicle.fullWeight"> 
-            <label for="float-input">Вес полностью груженого</label>
+            <label for="float-input">Вес полностью груж.</label>
         </span>
         <span class="form-input ui-float-label">
             <input name="length" type="number" size="10" pInputText [(ngModel)]="vehicle.length"> 
@@ -60,21 +60,29 @@
             <p-checkbox name="backAxisDoubleWheels" [(ngModel)]="vehicle.backAxisDoubleWheels" binary="true"></p-checkbox>
             <label>Двускатн./пневмо - ЗАД</label>
         </span>
+        
+        <br>
+        <br>
+        <span>
+            Нагрузки на оси:
+        </span>
+        <br>
+
         <span class="form-input ui-float-label">
             <input class="input-wide" name="frontAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisBasicWeight"> 
-            <label for="float-input">Нагрузка на переднюю ось снаряженного</label>
+            <label for="float-input">Передняя ось снаряженного</label>
         </span>
         <span class="form-input ui-float-label">
             <input class="input-wide" name="backAxisBasicWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisBasicWeight"> 
-            <label for="float-input">Нагрузка на заднюю ось снаряженного</label>
+            <label for="float-input">Задняя ось снаряженного</label>
         </span>
         <span class="form-input ui-float-label">
             <input class="input-wide" name="frontAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.frontAxisFullWeight"> 
-            <label for="float-input">Нагрузка на переднюю ось полностью груженого</label>
+            <label for="float-input">Передняя ось полностью груженого</label>
         </span>
         <span class="form-input ui-float-label">
             <input class="input-wide" name="backAxisFullWeight" type="number" size="40" pInputText [(ngModel)]="vehicle.backAxisFullWeight"> 
-            <label for="float-input">Нагрузка на заднюю ось полностью груженого</label>
+            <label for="float-input">Задняя ось полностью груженого</label>
         </span>
         <span class="form-input">
             <p-checkbox name="saddleDevice" [(ngModel)]="vehicle.saddleDevice" binary="true"></p-checkbox>

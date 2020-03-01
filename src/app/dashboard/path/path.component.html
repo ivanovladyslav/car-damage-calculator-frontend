@@ -13,6 +13,7 @@
 
 <ng-container *ngIf="path">
     <button pButton *ngIf="editMode" label="Создать" class="btn-control ui-button-success" (click)="upsert()"></button>
+    <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
     <button pButton *ngIf="!editMode" label="Обновить" class="btn-control" (click)="update()"></button>
     <button pButton *ngIf="!editMode" label="Удалить" class="btn-control ui-button-danger" (click)="delete()"></button>
 </ng-container>
@@ -21,7 +22,6 @@
         <span class="form-input ui-float-label">
             <input name="name" type="text" size="30" pInputText [(ngModel)]="path.name"> 
             <label for="float-input">Название</label>
-            <button pButton *ngIf="editMode" label="Отменить" (click)="editModeOff()"></button>
         </span>
         <span class="form-input ui-float-label">
             <input name="length" type="number" size="20" pInputText [(ngModel)]="path.length"> 
