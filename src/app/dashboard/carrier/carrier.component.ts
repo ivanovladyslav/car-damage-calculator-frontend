@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 class Carrier {
-    public id!: number;
+    public id!: string;
     public name!: string;
     public postcode: number;
     public address: string;
@@ -13,7 +12,7 @@ class Carrier {
     public KPP?: string;
     public managerPosition: string;
     public managerFullName: string; 
-    bankCredentials: string;
+    public bankCredentials: string;
 }
 
 interface CarrierList {
@@ -25,7 +24,6 @@ interface CarrierList {
     templateUrl: './carrier.component.html'
 })
 export class CarrierComponent {
-    types: Array<SelectItem>;
     carriers: Array<Carrier>;
     filtered: Array<Carrier>;
     carrier: Carrier;
@@ -142,18 +140,19 @@ export class CarrierComponent {
     }
 
     async delete(): Promise<void> {
-        console.log('delete');
+        console.log(`delete carrier with id ${this.carrier.id}`);
+        console.log(this.carrier);
         try {
             await this.apollo.mutate<any, any>({
                 mutation: gql`
                     mutation deleteCarrier($id: String!) {
                         deleteCarrier(id: $id) {
-                            name
+                            id
                         }
                     }
                 `,
                 variables: {
-                    id: this.carrier.id
+                    id: this.carrier.id.toString()
                 }
             }).toPromise();
 
