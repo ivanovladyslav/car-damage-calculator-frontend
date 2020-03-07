@@ -1,8 +1,9 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, ViewChild } from '@angular/core';
 import { VehicleComponent, Vehicle } from '../vehicle/vehicle.component';
 import { Path, PathComponent } from '../path/path.component';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { CarrierComponent } from '../carrier/carrier.component';
 
 @Component({
     selector: 'calculator',
@@ -11,6 +12,7 @@ import gql from 'graphql-tag';
 export class CalculatorComponent {
     @ViewChildren(VehicleComponent) vehiclesForms: QueryList<VehicleComponent>; 
     @ViewChildren(PathComponent) pathsForms: QueryList<PathComponent>; 
+    @ViewChild(CarrierComponent, { static: false }) carrierForm: CarrierComponent;
 
     cargoWeight: string;
     vehicles: Array<Vehicle> = [];
@@ -31,11 +33,12 @@ export class CalculatorComponent {
         const { data } = await this.apollo.query<any>({
             variables: { 
                 vehiclesLoads,
-                pathsIDs
+                pathsIDs,
+                carrierID: this.carrierForm.carrier.id.toString()
             },
             query: gql`
-                query calculation($vehiclesLoads: [VehicleLoad], $pathsIDs: [Int]) {
-                    calculation(vehiclesLoads: $vehiclesLoads, pathsIDs: $pathsIDs) {
+                query calculation($vehiclesLoads: [VehicleLoad], $pathsIDs: [Int], $carrierID: String) {
+                    calculation(vehiclesLoads: $vehiclesLoads, pathsIDs: $pathsIDs, carrierID: $carrierID) {
                         amount
                         logs
                     }
