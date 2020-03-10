@@ -44,3 +44,45 @@
         margin: 0 5px;
     }
 }
+
+.doc {
+    &-table {
+    }
+    &-loads {
+        border: 1px solid black;
+        th, td {
+            height: 1px;
+            font-size: 12px;
+            div {
+                text-align: center;
+            }
+        }
+        tbody {
+            th, td {
+                vertical-align: top;
+            }
+        }
+        &__header {
+            &--border-r {
+                border-right: 1px solid black;                
+            }
+            &--border-b {
+                border-bottom: 1px solid black;
+            }
+        }
+        &__axis-load {
+            width: 60px;
+        }
+        &__size {
+            width: 36px;
+        }
+        &__price {
+            width: 70px;
+        }
+        &__empty-price-holder {
+            text-align: right; 
+            width: 182px; 
+            // height: 70px;
+        }
+    }
+}

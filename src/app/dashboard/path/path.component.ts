@@ -2,18 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { SelectItem } from 'primeng/api';
-
-export class Path {
-    public id: number = null;
-    public name: string = '';
-    public length: number = null;
-    public standardAxialLoad: number = null;
-    public soilFreezing: boolean = null;
-}
-
-interface PathList {
-    paths: Array<Path>;
-}
+import { Path, PathList } from '../types';
 
 @Component({
     selector: 'path',

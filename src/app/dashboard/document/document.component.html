@@ -1,0 +1,246 @@
+<h5 style="text-align: center;">Стандартный заголовок от 11.11.2019г
+    <br>
+    платы за счет возмещения вреда, причиняемого транспортным средства, осуществляющими перевозки тяжеловескных грузов по автомобильным дорогам ООО "Газпром добыча Уренгой"
+</h5>
+<div>
+    <table class="doc-table" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>Получатель:</td>
+            <td>"reciever.name"</td>
+            <td>Счет</td>
+            <td>"reciever.account"</td>
+            <td>ИНН/КПП</td>
+            <td>"reciever.inn"</td>
+        </tr>
+        <tr>
+            <td>Банк получателя:</td>
+            <td>"reciever.bank"</td>
+            <td>БИК</td>
+            <td>"reciever.bik"</td>
+            <td>Корр.счет</td>
+            <td>"reciever.correspondentAccount"</td>
+        </tr>
+        <tr>Назначение платежа:</tr>
+        <tr>
+            <td>"reciever.managerPosition"</td>
+            <td>"reciever.managerFullName"</td>
+        </tr>
+    </table>
+    <div class="doc-address">"reciever.name" + "reciever.address" + "reciever.phone"</div>
+    <div class="doc-credentials">
+        <table>
+            <tr>
+                <td>Перевозчик груза:</td>
+                <td>"carrier.name"</td>
+            </tr>
+            <tr>
+                <td>Банковские реквизиты:</td>
+                <td>"carrier.bankCredentials"</td>
+                <td>"carrier.inn" + "carrier.kpp"</td>
+            </tr>
+            <tr>
+                <td>Период перевозки:</td>
+                <td>"period"</td>
+            </tr>
+            <tr>
+                <td>Маршрут движения:</td>
+                <td>"ngFor="let path of paths""</td>
+            </tr>
+        </table>
+    </div>
+    <div class="doc-loads">
+        <table cellspacing="0" cellpadding="0">
+            <thead>
+                <tr class="doc-loads__header--border-b">
+                    <th class="doc-loads__header--border-r">№ п/п</th>
+                    <th class="doc-loads__header--border-r">Марка транспортного средства</th>
+                    <th class="doc-loads__header--border-r">Кол-во машин</th>
+                    <th class="doc-loads__header--border-r">Маршрут (км)</th>
+                    <th class="doc-loads__header--border-r">Кол-во рейсов</th>
+                    <th class="doc-loads__header--border-r">
+                        <tr class="doc-loads__header--border-b">
+                            <th colspan="4">Масса с грузом (т)</th>
+                        </tr>
+                        <tr>
+                            <td class="doc-loads__header--border-r">
+                                <tr class="doc-loads__header--border-b">
+                                    <td colspan="3" style="height: 43px;">Осевые нагрузки</td>
+                                </tr>
+                                <tr>
+                                    <td class="doc-loads__header--border-r">
+                                        <div class="doc-loads__axis-load">факт.</div>
+                                    </td>
+                                    <td class="doc-loads__header--border-r">
+                                        <div class="doc-loads__axis-load">норм.</div>
+                                    </td>
+                                    <td>
+                                        <div class="doc-loads__axis-load">перегруз</div>
+                                    </td>
+                                </tr>
+                            </td>
+                            <td rowspan="2">
+                                Тариф на 100км.
+                            </td>
+                        </tr>
+                    </th>
+                    <th class="doc-loads__header--border-r">
+                        <tr class="doc-loads__header--border-b">
+                            <th colspan="2" class="doc-loads__header--border-r" style="height: 60px;">Длина</th>
+                            <th colspan="2" class="doc-loads__header--border-r" >Ширина</th>
+                            <th colspan="2">Высота</th>
+                        </tr>
+                        <tr>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__size">факт</div>
+                            </th>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__size">доп.</div>
+                            </th>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__size">факт</div>
+                            </th>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__size">доп.</div>
+                            </th>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__size">факт</div>
+                            </th>
+                            <th>
+                                <div class="doc-loads__size">доп.</div>
+                            </th>
+                        </tr>
+                    </th>
+                    <th>
+                        <tr class="doc-loads__header--border-b">
+                            <th colspan="3">Стоимость, руб.</th>
+                        </tr>
+                        <tr>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__price">за ед.</div>
+                            </th>
+                            <th class="doc-loads__header--border-r">
+                                <div class="doc-loads__price">* на кол-во рейсов</div>
+                            </th>
+                            <th>
+                                <div class="doc-loads__price">* на компенс. индекс</div>
+                            </th>
+                        </tr>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Vehicles informations: use ngFor for rendering -->
+                <tr class="doc-loads__header--border-b">
+                    <td class="doc-loads__header--border-r">
+                        "i"
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        "name"
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        1
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        "paths"
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        <!-- use ngFor to render axis loads -->
+                        <tr>
+                            <td>
+                                <tr class="doc-loads__header--border-b">
+                                    <td class="doc-loads__header--border-r">
+                                        <!-- "factLoad" -->
+                                        <div class="doc-loads__axis-load">42.560</div>
+                                    </td>
+                                    <td class="doc-loads__header--border-r">
+                                        <!-- "normalLoad" -->
+                                        <div class="doc-loads__axis-load">44</div>
+                                    </td>
+                                    <td class="doc-loads__header--border-r">
+                                        <!-- "overLoad" -->
+                                        <div class="doc-loads__axis-load">20-30%</div>
+                                    </td>
+                                    <td>
+                                        <!-- "pricePerKm" -->
+                                        <div class="doc-loads__axis-load">5265</div>
+                                    </td>
+                                </tr>
+                            </td>
+                        </tr>
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        <tr class="doc-loads__header--border-b">
+                            <td class="doc-loads__header--border-r">
+                                <!-- "factLength" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "additionalLength" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "factWidth" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "additionalWidth" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "factHeight" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                            <td>
+                                <!-- "additionalLength" -->
+                                <div class="doc-loads__size">10</div>
+                            </td>
+                        </tr>
+                    </td>
+                    <td class="doc-loads__header--border-b"></td>
+                </tr>
+                <tr>
+                    <td class="doc-loads__header--border-r"></td>
+                    <td class="doc-loads__header--border-r"></td>
+                    <td class="doc-loads__header--border-r"></td>
+                    <td class="doc-loads__header--border-r">
+                        <!-- "paths.length" -->
+                        20.647
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        <!-- "tripAmount" -->
+                        10
+                    </td>
+                    <td class="doc-loads__header--border-r">
+                        <tr>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "sum(priceForKm)" -->
+                                <div class="doc-loads__empty-price-holder"></div>
+                            </td>
+                            <td>10 530</td>
+                        </tr>
+                    </td>
+                    <td class="doc-loads__header--border-r"></td>
+                    <td>
+                        <tr>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "priceForTrip" -->
+                                <div class="doc-loads__price">2 174.13</div>
+                            </td>
+                            <td class="doc-loads__header--border-r">
+                                <!-- "priceForTrips" -->
+                                <div class="doc-loads__price">21 741.29</div>
+                            </td>
+                            <td>
+                                <!-- "priceWithCompensatoryIndex" -->
+                                <div class="doc-loads__price">40 099.64</div>
+                            </td>
+                        </tr>
+                    </td>
+                </tr>
+                <!-- end of vehicle info -->
+            </tbody>
+        </table>
+    </div>
+</div>

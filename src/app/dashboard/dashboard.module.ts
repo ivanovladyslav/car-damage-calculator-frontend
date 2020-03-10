@@ -15,6 +15,7 @@ import { VehicleComponent } from '@app/dashboard/vehicle/vehicle.component';
 import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
 import { CalculatorComponent } from '@app/dashboard/calculator/calculator.component';
 import { PathComponent } from '@app/dashboard/path/path.component';
+import { DocumentComponent } from '@app/dashboard/document/document.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { PathComponent } from '@app/dashboard/path/path.component';
         CarrierComponent,
         VehicleComponent,
         CalculatorComponent,
-        PathComponent
+        PathComponent,
+        DocumentComponent
     ],
     imports: [
         CommonModule,

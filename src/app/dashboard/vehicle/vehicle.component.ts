@@ -2,30 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { SelectItem } from 'primeng/api';
-
-export class Vehicle {
-    id: string = '';
-    name: string | null = null;
-    type: 'Тягач' | 'Прицеп' | '' = ''; 
-    basicWeight: number = null;
-    maxCargoWeight: number = null;
-    fullWeight: number = null;
-    length: number = null;
-    width: number = null;
-    height: number = null;
-    axisDistances: string = '';
-    frontAxisDoubleWheels: boolean = false;
-    backAxisDoubleWheels: boolean = false;
-    frontAxisBasicWeight: number = null;
-    frontAxisFullWeight: number = null;
-    backAxisBasicWeight: number = null;
-    backAxisFullWeight: number = null;
-    saddleDevice: boolean = false;
-}
-
-interface VehiclesList {
-    vehicles: Vehicle[] | null;
-}
+import { Vehicle, VehiclesList } from '../types';
 
 @Component({
     selector: 'vehicle',

@@ -1,9 +1,10 @@
 import { Component, ViewChildren, QueryList, ViewChild } from '@angular/core';
-import { VehicleComponent, Vehicle } from '../vehicle/vehicle.component';
-import { Path, PathComponent } from '../path/path.component';
+import { VehicleComponent } from '../vehicle/vehicle.component';
+import { PathComponent } from '../path/path.component';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { CarrierComponent } from '../carrier/carrier.component';
+import { Vehicle, Path } from '../types';
 
 @Component({
     selector: 'calculator',
@@ -18,6 +19,7 @@ export class CalculatorComponent {
     vehicles: Array<Vehicle> = [];
     paths: Array<Path> = [];
     logs: Array<string>;
+    showDocument: boolean = false;
 
     constructor(private readonly apollo: Apollo) {}
 
@@ -49,6 +51,7 @@ export class CalculatorComponent {
 
         this.logs = data.calculation.logs;
         console.log(data);
+        this.showDocument = true;
     }
 
     addVehicle(): void {

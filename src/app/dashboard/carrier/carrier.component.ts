@@ -1,23 +1,7 @@
 import { Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-
-class Carrier {
-    public id!: string;
-    public name!: string;
-    public postcode: number;
-    public address: string;
-    public phoneNumber: string;
-    public INN: string;
-    public KPP?: string;
-    public managerPosition: string;
-    public managerFullName: string; 
-    public bankCredentials: string;
-}
-
-interface CarrierList {
-    carriers: Array<Carrier>;
-}
+import { Carrier, CarrierList } from '../types';
 
 @Component({
     selector: 'carrier',
