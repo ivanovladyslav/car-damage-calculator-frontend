@@ -19,6 +19,7 @@ export class CalculatorComponent {
     vehicles: Array<Vehicle> = [];
     paths: Array<Path> = [];
     logs: Array<string>;
+    calculation: any;
     showDocument: boolean = false;
 
     constructor(private readonly apollo: Apollo) {}
@@ -41,7 +42,47 @@ export class CalculatorComponent {
             query: gql`
                 query calculation($vehiclesLoads: [VehicleLoad], $pathsIDs: [Int], $carrierID: String) {
                     calculation(vehiclesLoads: $vehiclesLoads, pathsIDs: $pathsIDs, carrierID: $carrierID) {
-                        amount
+                        vehiclesPassports {
+                            vehicle {
+                                name
+                                type
+                                length 
+                                width
+                                height 
+                                saddleDevice
+                            }
+                            axisLoads {
+                                distance
+                                axisGroup
+                                axisGroupType
+                                load
+                                excess
+                                cost
+                            }
+                            cargoWeight
+                        }
+                        carrier {
+                            name
+                            postcode
+                            address
+                            phoneNumber
+                            INN
+                            KPP
+                            managerPosition
+                            managerFullName
+                            bankCredentials
+                            recieverName
+                            recieverINN
+                            recieverKPP
+                            recieverBankName
+                            recieverBankAccount
+                            recieverBIK
+                            recieverOGRN
+                            recieverCorrespondentAccount                       
+                        }
+                        paths {
+                            name
+                        }
                         logs
                     }
                 }
@@ -50,7 +91,10 @@ export class CalculatorComponent {
         }).toPromise();
 
         this.logs = data.calculation.logs;
-        console.log(data);
+        this.calculation = data.calculation;
+
+        console.log(this.calculation);
+
         this.showDocument = true;
     }
 

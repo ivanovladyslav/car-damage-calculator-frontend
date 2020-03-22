@@ -6,7 +6,7 @@ import { VehiclePassport, Path, Carrier } from '../types';
     templateUrl: './document.component.html'
 })
 export class DocumentComponent {
-    @Input() vehiclePassports: Array<VehiclePassport>;
+    @Input() vehiclesPassports: Array<VehiclePassport>;
     @Input() paths: Array<Path>;
     @Input() carrier: Carrier;
 }

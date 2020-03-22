@@ -34,6 +34,14 @@ export class CarrierComponent {
                         managerPosition
                         managerFullName
                         bankCredentials
+                        recieverName
+                        recieverINN
+                        recieverKPP
+                        recieverBankName
+                        recieverBankAccount
+                        recieverBIK
+                        recieverOGRN
+                        recieverCorrespondentAccount
                     }
                 }
             `,

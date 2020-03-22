@@ -53,7 +53,35 @@
         </span>
         <span class="form-input ui-float-label">
             <input name="bankCredentials" type="string" size="20" pInputText [(ngModel)]="carrier.bankCredentials"> 
-            <label for="float-input">Банковские реквизиты</label>
+            <label for="float-input">Банковские реквизиты перевозчика</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverName" type="string" size="20" pInputText [(ngModel)]="carrier.recieverName"> 
+            <label for="float-input">Название компании получателя</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverINN" type="string" size="20" pInputText [(ngModel)]="carrier.recieverINN"> 
+            <label for="float-input">ИНН получателя</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverKPP" type="string" size="20" pInputText [(ngModel)]="carrier.recieverKPP"> 
+            <label for="float-input">КПП получателя</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverBankName" type="string" size="20" pInputText [(ngModel)]="carrier.recieverBankName"> 
+            <label for="float-input">Название банка</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverBankAccount" type="string" size="20" pInputText [(ngModel)]="carrier.recieverBankAccount"> 
+            <label for="float-input">Счет получателя</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverBIK" type="string" size="20" pInputText [(ngModel)]="carrier.recieverBIK"> 
+            <label for="float-input">БИК получателя</label>
+        </span>
+        <span class="form-input ui-float-label">
+            <input name="recieverOGRN" type="string" size="20" pInputText [(ngModel)]="carrier.recieverOGRN"> 
+            <label for="float-input">ОГРН получателя</label>
         </span>
     </form>
 </div>

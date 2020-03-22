@@ -1,4 +1,4 @@
-<h5 style="text-align: center;">Стандартный заголовок от 11.11.2019г
+<h5 style="text-align: center;">РАСЧЕТ №{{id}} от {{paymentDate}}
     <br>
     платы за счет возмещения вреда, причиняемого транспортным средства, осуществляющими перевозки тяжеловескных грузов по автомобильным дорогам ООО "Газпром добыча Уренгой"
 </h5>
@@ -6,37 +6,37 @@
     <table class="doc-table" cellspacing="0" cellpadding="0">
         <tr>
             <td>Получатель:</td>
-            <td>"reciever.name"</td>
+            <td>{{carrier.recieverName}}</td>
             <td>Счет</td>
-            <td>"reciever.account"</td>
+            <td>{{carrier.recieverBankAccount}}</td>
             <td>ИНН/КПП</td>
-            <td>"reciever.inn"</td>
+            <td>{{carrier.recieverINN}} / {{carrier.recieverKPP}}</td>
         </tr>
         <tr>
             <td>Банк получателя:</td>
-            <td>"reciever.bank"</td>
+            <td>{{carrier.recieverBankName}}"</td>
             <td>БИК</td>
-            <td>"reciever.bik"</td>
+            <td>{{carrier.recieverBIK}}</td>
             <td>Корр.счет</td>
-            <td>"reciever.correspondentAccount"</td>
+            <td>{{carrier.recieverCorrespondentAccount}}</td>
         </tr>
         <tr>Назначение платежа:</tr>
         <tr>
-            <td>"reciever.managerPosition"</td>
-            <td>"reciever.managerFullName"</td>
+            <td>{{carrier.managerPosition}}</td>
+            <td>{{carrier.managerFullName}}</td>
         </tr>
     </table>
-    <div class="doc-address">"reciever.name" + "reciever.address" + "reciever.phone"</div>
+    <div class="doc-address">{{carrier.name}} {{carrier.address}} {{carrier.phoneNumber}}</div>
     <div class="doc-credentials">
         <table>
             <tr>
                 <td>Перевозчик груза:</td>
-                <td>"carrier.name"</td>
+                <td>{{carrier.name}}</td>
             </tr>
             <tr>
                 <td>Банковские реквизиты:</td>
-                <td>"carrier.bankCredentials"</td>
-                <td>"carrier.inn" + "carrier.kpp"</td>
+                <td>{{carrier.bankCredentials}}</td>
+                <td>{{carrier.INN}} {{carrier.KPP}}</td>
             </tr>
             <tr>
                 <td>Период перевозки:</td>
