@@ -23,7 +23,7 @@
         display: inline-block;
         margin-top: 15px;
         margin-right: 15px;
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 .document {
@@ -45,8 +45,24 @@
     }
 }
 
+.calculation {
+    &-position {
+        background-color: lightblue;
+        border-radius: 5px;
+        padding: 5px 15px 15px;
+        margin: 15px 0;
+    }
+}
+
 .doc {
-    &-table {
+    &-reciever {
+        font-size: 12px;
+    }
+    &-address {
+        font-size: 12px;
+    }
+    &-credentials {
+        font-size: 12px;
     }
     &-loads {
         border: 1px solid black;

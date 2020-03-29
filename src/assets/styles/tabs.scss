@@ -4,3 +4,12 @@ body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
         outline: none;
     }
 }
+
+body .ui-tabmenuitem-hasicon {
+    float: right!important;
+    background-color: #34A835!important;
+    .ui-menuitem-link, .ui-menuitem-icon, .ui-menuitem-text {
+        color: white!important;
+        
+    }
+}

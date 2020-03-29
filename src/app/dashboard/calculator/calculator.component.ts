@@ -1,18 +1,16 @@
 import { Component, ViewChildren, QueryList, ViewChild } from '@angular/core';
-import { VehicleComponent } from '../vehicle/vehicle.component';
-import { PathComponent } from '../path/path.component';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { CarrierComponent } from '../carrier/carrier.component';
 import { Vehicle, Path } from '../types';
+import { CalculationPositionComponent } from './calculation-position/calculation-position.component';
 
 @Component({
     selector: 'calculator',
     templateUrl: './calculator.component.html'
 })
 export class CalculatorComponent {
-    @ViewChildren(VehicleComponent) vehiclesForms: QueryList<VehicleComponent>; 
-    @ViewChildren(PathComponent) pathsForms: QueryList<PathComponent>; 
+    @ViewChildren(CalculationPositionComponent) calculationPositionsForms: QueryList<CalculationPositionComponent>; 
     @ViewChild(CarrierComponent, { static: false }) carrierForm: CarrierComponent;
 
     cargoWeight: string;
@@ -21,46 +19,49 @@ export class CalculatorComponent {
     logs: Array<string>;
     calculation: any;
     showDocument: boolean = false;
+    positionsCount: Array<number> = [];
 
     constructor(private readonly apollo: Apollo) {}
 
     async makeCalculation(): Promise<void> {
-        const vehiclesLoads = await this.vehiclesForms.toArray().map((vf) => {
-            return {
-                id: vf.vehicle.id,
-                cargoWeight: vf.cargoWeight
-            };
+        const payloads = this.calculationPositionsForms.toArray().map((cpf) => {
+            return { 
+                vehiclesPayloads: cpf.vehiclesForms.map(vf => { return { id: vf.vehicle.id, cargoWeight: vf.cargoWeight }}),
+                pathsIDs: cpf.pathsForms.map(pf => { return pf.path.id })
+            }
         });
-        const pathsIDs = await this.pathsForms.toArray().map(pi => pi.path.id);
+
+        console.log(payloads);
         
         const { data } = await this.apollo.query<any>({
             variables: { 
-                vehiclesLoads,
-                pathsIDs,
+                payloads,
                 carrierID: this.carrierForm.carrier.id.toString()
             },
             query: gql`
-                query calculation($vehiclesLoads: [VehicleLoad], $pathsIDs: [Int], $carrierID: String) {
-                    calculation(vehiclesLoads: $vehiclesLoads, pathsIDs: $pathsIDs, carrierID: $carrierID) {
-                        vehiclesPassports {
-                            vehicle {
-                                name
-                                type
-                                length 
-                                width
-                                height 
-                                saddleDevice
+                query calculate($payloads: [CalculationPositionPayload], $carrierID: String) {
+                    calculate(payloads: $payloads, carrierID: $carrierID) {
+                        calculationPositions {
+                            vehiclesPassports {
+                                vehicle {
+                                    name
+                                    type
+                                    length 
+                                    width
+                                    height 
+                                    saddleDevice
+                                }
+                                axisLoads {
+                                    distance
+                                    axisGroup
+                                    axisGroupType
+                                    load
+                                    excess
+                                    cost
+                                }
+                                cargoWeight
                             }
-                            axisLoads {
-                                distance
-                                axisGroup
-                                axisGroupType
-                                load
-                                excess
-                                cost
-                            }
-                            cargoWeight
-                        }
+                        }                        
                         carrier {
                             name
                             postcode
@@ -90,27 +91,16 @@ export class CalculatorComponent {
             fetchPolicy: 'no-cache'
         }).toPromise();
 
-        this.logs = data.calculation.logs;
-        this.calculation = data.calculation;
-
-        console.log(this.calculation);
-
+        this.logs = data.calculate.logs;
+        this.calculation = data.calculate;
         this.showDocument = true;
     }
 
-    addVehicle(): void {
-        this.vehicles.push(new Vehicle());
+    addCalculationPosition(): void {
+        this.positionsCount.push(0);
     }
 
-    removeVehicle(): void {
-        this.vehicles.pop();
-    }
-    
-    addPath(): void {
-        this.paths.push(new Path());
-    }
-
-    removePath(): void {
-        this.paths.pop();
+    removeCalculationPosition(): void {
+        this.positionsCount.pop();
     }
 }

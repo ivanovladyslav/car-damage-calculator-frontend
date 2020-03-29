@@ -24,7 +24,8 @@ export class DashboardComponent {
             },
             { 
                 label: 'Расчет',
-                routerLink: ['/dashboard/calculator']
+                routerLink: ['/dashboard/calculator'],
+                icon: 'pi pi-fw pi-pencil'
             }
         ]
     }

@@ -1,19 +1,14 @@
 <div class="document-element">
-    <h3>Транспортные средства</h3>
-    <vehicle #vehicle [cargoWeightInput]="true" *ngFor="let vehicle of vehicles">
-    </vehicle>
+    <calculations-list></calculations-list>
 </div>
 <div class="document-element">
-    <button pButton label="+" class="btn-control ui-button" (click)="addVehicle()"></button>
-    <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removeVehicle()"></button>
+    <h3>Группы транспортных средств</h3>
+    <calculation-position #vehicle *ngFor="let i of positionsCount">
+    </calculation-position>
 </div>
 <div class="document-element">
-    <h3>Маршрут</h3>
-    <path #path *ngFor="let path of paths"></path>
-</div>
-<div class="document-element">
-    <button pButton label="+" class="btn-control ui-button" (click)="addPath()"></button>
-    <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removePath()"></button>
+    <button pButton label="+" class="btn-control ui-button" (click)="addCalculationPosition()"></button>
+    <button pButton label="-" class="btn-control ui-button ui-button-danger" (click)="removeCalculationPosition()"></button>
 </div>
 <div class="document-element">
     <h3>Перевозчик</h3>
@@ -28,8 +23,5 @@
     <button pButton label="Сгенерировать отчет" class="btn-control ui-button-success document-element" (click)="makeCalculation()"></button>
 </div>
 <div class="document-element" *ngIf="calculation">
-    <document [vehiclesPassports]="calculation.vehiclesPassports" 
-              [carrier]="calculation.carrier"
-              [paths]="calculation.paths">
-    </document>
+    <document [calculation]="calculation"></document>
 </div>

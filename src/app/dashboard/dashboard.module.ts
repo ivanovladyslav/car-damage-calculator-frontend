@@ -8,6 +8,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox'
 import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
 
 import { DashboardRoutingModule } from '@app/dashboard/dashboard-routing.module';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
@@ -16,6 +17,8 @@ import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
 import { CalculatorComponent } from '@app/dashboard/calculator/calculator.component';
 import { PathComponent } from '@app/dashboard/path/path.component';
 import { DocumentComponent } from '@app/dashboard/document/document.component';
+import { CalculationPositionComponent } from '@app/dashboard/calculator/calculation-position/calculation-position.component';
+import { CalculationsListComponent } from '@app/dashboard/calculations-list/calculations-list.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,9 @@ import { DocumentComponent } from '@app/dashboard/document/document.component';
         VehicleComponent,
         CalculatorComponent,
         PathComponent,
-        DocumentComponent
+        DocumentComponent,
+        CalculationPositionComponent,
+        CalculationsListComponent
     ],
     imports: [
         CommonModule,
@@ -37,7 +42,8 @@ import { DocumentComponent } from '@app/dashboard/document/document.component';
         ButtonModule,
         CheckboxModule,
         ReactiveFormsModule,
-        DropdownModule
+        DropdownModule,
+        TableModule
     ]
 })
 export class DashboardModule {
