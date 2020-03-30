@@ -1,29 +1,47 @@
-<h5 style="text-align: center;">РАСЧЕТ №{{id}} от {{paymentDate}}
+<h5 style="text-align: center;">РАСЧЕТ №{{calculation.id}} от {{calculation.paymentDate}}
     <br>
-    платы за счет возмещения вреда, причиняемого транспортным средства, осуществляющими перевозки тяжеловескных грузов по автомобильным дорогам ООО "Газпром добыча Уренгой"
+    платы за счет возмещения вреда, причиняемого транспортным средства, осуществляющими перевозки тяжеловесных грузов по автомобильным дорогам {{carrier.recieverName}}"
 </h5>
 <div>
     <table class="doc-reciever" cellspacing="0" cellpadding="0">
         <tr>
-            <td>Получатель:</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">Получатель:</div>
+            </td>
             <td>{{carrier.recieverName}}</td>
-            <td>Счет</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">Счет</div>
+            </td>
             <td>{{carrier.recieverBankAccount}}</td>
-            <td>ИНН/КПП</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">ИНН/КПП</div>
+            </td>
             <td>{{carrier.recieverINN}} / {{carrier.recieverKPP}}</td>
         </tr>
         <tr>
-            <td>Банк получателя:</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">Банк получателя:</div>
+            </td>
             <td>{{carrier.recieverBankName}}"</td>
-            <td>БИК</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">БИК</div>
+            </td>
             <td>{{carrier.recieverBIK}}</td>
-            <td>Корр.счет</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">Корр.счет</div>
+            </td>
             <td>{{carrier.recieverCorrespondentAccount}}</td>
         </tr>
-        <tr>Назначение платежа:</tr>
         <tr>
-            <td>{{carrier.managerPosition}}</td>
-            <td>{{carrier.managerFullName}}</td>
+            <td class="doc-reciever__header">
+                <div class="doc-reciever__header-content">Назначение платежа:</div>
+            </td>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2">{{carrier.managerPosition}}</td>
+            <td colspan="3">{{carrier.managerFullName}}</td>
         </tr>
     </table>
     <div class="doc-address">{{carrier.name}} {{carrier.address}} {{carrier.phoneNumber}}</div>
@@ -36,7 +54,7 @@
             <tr>
                 <td>Банковские реквизиты:</td>
                 <td>{{carrier.bankCredentials}}</td>
-                <td>{{carrier.INN}} {{carrier.KPP}}</td>
+                <td>ИНН: {{carrier.INN}} КПП: {{carrier.KPP}}</td>
             </tr>
             <tr>
                 <td>Период перевозки:</td>
@@ -44,7 +62,11 @@
             </tr>
             <tr>
                 <td>Маршрут движения:</td>
-                <td>"ngFor="let path of paths""</td>
+                <td>
+                    <ng-container *ngFor="let cp of calculationPositions">
+                        <span *ngFor="let path of cp.paths">{{ path.name }} </span>
+                    </ng-container>
+                </td>
             </tr>
         </table>
     </div>
@@ -52,12 +74,12 @@
         <table cellspacing="0" cellpadding="0">
             <thead>
                 <tr class="doc-loads__header--border-b">
-                    <th class="doc-loads__header--border-r">№ п/п</th>
-                    <th class="doc-loads__header--border-r">Марка транспортного средства</th>
-                    <th class="doc-loads__header--border-r">Кол-во машин</th>
-                    <th class="doc-loads__header--border-r">Маршрут (км)</th>
-                    <th class="doc-loads__header--border-r">Кол-во рейсов</th>
-                    <th class="doc-loads__header--border-r">
+                    <th class="doc-loads__header--border-r doc-loads__header-number">№ п/п</th>
+                    <th class="doc-loads__header--border-r doc-loads__header-model">Марка транспортного средства</th>
+                    <th class="doc-loads__header--border-r doc-loads__header-vehicle-count">Кол-во машин</th>
+                    <th class="doc-loads__header--border-r doc-loads__header-path">Маршрут (км)</th>
+                    <th class="doc-loads__header--border-r doc-loads__header-trip-count">Кол-во рейсов</th>
+                    <th class="doc-loads__header--border-r" width="244">
                         <tr class="doc-loads__header--border-b">
                             <th colspan="4">Масса с грузом (т)</th>
                         </tr>
@@ -83,7 +105,7 @@
                             </td>
                         </tr>
                     </th>
-                    <th class="doc-loads__header--border-r">
+                    <th class="doc-loads__header--border-r" width="222">
                         <tr class="doc-loads__header--border-b">
                             <th colspan="2" class="doc-loads__header--border-r" style="height: 60px;">Длина</th>
                             <th colspan="2" class="doc-loads__header--border-r" >Ширина</th>
@@ -130,115 +152,122 @@
             </thead>
             <tbody>
                 <!-- Vehicles informations: use ngFor for rendering -->
-                <tr class="doc-loads__header--border-b">
-                    <td class="doc-loads__header--border-r">
-                        "i"
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        "name"
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        1
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        "paths"
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        <!-- use ngFor to render axis loads -->
-                        <tr>
-                            <td>
+                <ng-container *ngFor="let cp of calculationPositions; let i = index">
+                    <tr class="doc-loads__header--border-b">
+                        <td class="doc-loads__header--border-r">
+                            {{ i + 1 }}
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <span *ngFor="let vp of cp.vehiclesPassports; let vpNumber = index">
+                                {{ vp.vehicle.name }} 
+                                <ng-container *ngIf="cp.vehiclesPassports.length > 0 && vpNumber != cp.vehiclesPassports.length - 1">+</ng-container>
+                            </span>
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            {{ cp.vehiclesPassports.length }}
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <span *ngFor="let path of cp.paths">{{ path.name }} </span>
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <!-- use ngFor to render axis loads -->
+                            <ng-container  *ngFor="let vp of cp.vehiclesPassports">
+                                <ng-container *ngFor="let axisLoad of vp.axisLoads">
+                                    <tr class="doc-loads__header--border-b">
+                                        <td class="doc-loads__header--border-r">
+                                            <!-- "factLoad" -->
+                                            <div class="doc-loads__axis-load">{{ roundNumber(axisLoad.load) }}</div>
+                                        </td>
+                                        <td class="doc-loads__header--border-r">
+                                            <!-- "normalLoad" -->
+                                            <div class="doc-loads__axis-load">{{ roundNumber(axisLoad.normLoad) }}</div>
+                                        </td>
+                                        <td class="doc-loads__header--border-r">
+                                            <!-- "overLoad" -->
+                                            <div class="doc-loads__axis-load">{{ roundNumber(axisLoad.excess) }}</div>
+                                        </td>
+                                        <td>
+                                            <!-- "pricePerKm" -->
+                                            <div class="doc-loads__axis-load">{{ roundNumber(axisLoad.cost) }}</div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <ng-container *ngFor="let vp of cp.vehiclesPassports">
                                 <tr class="doc-loads__header--border-b">
                                     <td class="doc-loads__header--border-r">
-                                        <!-- "factLoad" -->
-                                        <div class="doc-loads__axis-load">42.560</div>
+                                        <!-- "factLength" -->
+                                        <div class="doc-loads__size">{{ vp.vehicle.length }}</div>
                                     </td>
                                     <td class="doc-loads__header--border-r">
-                                        <!-- "normalLoad" -->
-                                        <div class="doc-loads__axis-load">44</div>
+                                        <!-- "additionalLength" -->
+                                        <div class="doc-loads__size"></div>
                                     </td>
                                     <td class="doc-loads__header--border-r">
-                                        <!-- "overLoad" -->
-                                        <div class="doc-loads__axis-load">20-30%</div>
+                                        <!-- "factWidth" -->
+                                        <div class="doc-loads__size">{{ vp.vehicle.width }}</div>
+                                    </td>
+                                    <td class="doc-loads__header--border-r">
+                                        <!-- "additionalWidth" -->
+                                        <div class="doc-loads__size"></div>
+                                    </td>
+                                    <td class="doc-loads__header--border-r">
+                                        <!-- "factHeight" -->
+                                        <div class="doc-loads__size">{{ vp.vehicle.height }}</div>
                                     </td>
                                     <td>
-                                        <!-- "pricePerKm" -->
-                                        <div class="doc-loads__axis-load">5265</div>
+                                        <!-- "additionalLength" -->
+                                        <div class="doc-loads__size"></div>
                                     </td>
                                 </tr>
-                            </td>
-                        </tr>
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        <tr class="doc-loads__header--border-b">
-                            <td class="doc-loads__header--border-r">
-                                <!-- "factLength" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "additionalLength" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "factWidth" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "additionalWidth" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "factHeight" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                            <td>
-                                <!-- "additionalLength" -->
-                                <div class="doc-loads__size">10</div>
-                            </td>
-                        </tr>
-                    </td>
-                    <td class="doc-loads__header--border-b"></td>
-                </tr>
-                <tr>
-                    <td class="doc-loads__header--border-r"></td>
-                    <td class="doc-loads__header--border-r"></td>
-                    <td class="doc-loads__header--border-r"></td>
-                    <td class="doc-loads__header--border-r">
-                        <!-- "paths.length" -->
-                        20.647
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        <!-- "tripAmount" -->
-                        10
-                    </td>
-                    <td class="doc-loads__header--border-r">
-                        <tr>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "sum(priceForKm)" -->
-                                <div class="doc-loads__empty-price-holder"></div>
-                            </td>
-                            <td>10 530</td>
-                        </tr>
-                    </td>
-                    <td class="doc-loads__header--border-r"></td>
-                    <td>
-                        <tr>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "priceForTrip" -->
-                                <div class="doc-loads__price">2 174.13</div>
-                            </td>
-                            <td class="doc-loads__header--border-r">
-                                <!-- "priceForTrips" -->
-                                <div class="doc-loads__price">21 741.29</div>
-                            </td>
-                            <td>
-                                <!-- "priceWithCompensatoryIndex" -->
-                                <div class="doc-loads__price">40 099.64</div>
-                            </td>
-                        </tr>
-                    </td>
-                </tr>
+                            </ng-container>
+                        </td>
+                        <td class="doc-loads__header--border-b"></td>
+                    </tr>
+                    <tr>
+                        <td class="doc-loads__header--border-r"></td>
+                        <td class="doc-loads__header--border-r"></td>
+                        <td class="doc-loads__header--border-r"></td>
+                        <td class="doc-loads__header--border-r">
+                            <!-- "paths.length" -->
+                            {{ getPathsLength(cp.paths) }}
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <!-- "tripAmount" -->
+                            1
+                        </td>
+                        <td class="doc-loads__header--border-r">
+                            <tr>
+                                <td class="doc-loads__header--border-r">
+                                    <!-- "sum(priceForKm)" -->
+                                    <div class="doc-loads__empty-price-holder"></div>
+                                </td>
+                                <td>{{ getPricePerKm(cp.vehiclesPassports) }}</td>
+                            </tr>
+                        </td>
+                        <td class="doc-loads__header--border-r"></td>
+                        <td>
+                            <tr>
+                                <td class="doc-loads__header--border-r">
+                                    <!-- "priceForTrip" -->
+                                    <div class="doc-loads__price">{{ getPricePerKm(cp.vehiclesPassports) }}</div>
+                                </td>
+                                <td class="doc-loads__header--border-r">
+                                    <!-- "priceForTrips" -->
+                                    <div class="doc-loads__price">{{ getPricePerKm(cp.vehiclesPassports) }}</div>
+                                </td>
+                                <td>
+                                    <!-- "priceWithCompensatoryIndex" -->
+                                    <div class="doc-loads__price">{{ getPricePerKm(cp.vehiclesPassports) }}</div>
+                                </td>
+                            </tr>
+                        </td>
+                    </tr>
+                </ng-container>
                 <!-- end of vehicle info -->
             </tbody>
         </table>

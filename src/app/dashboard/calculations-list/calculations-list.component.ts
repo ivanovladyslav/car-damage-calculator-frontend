@@ -77,6 +77,7 @@ export class CalculationsListComponent implements OnInit {
             query: gql`
                 query calculation($id: Int) {
                     calculation(id: $id) {
+                        id
                         calculationPositions {
                             vehiclesPassports {
                                 vehicle {
@@ -92,10 +93,15 @@ export class CalculationsListComponent implements OnInit {
                                     axisGroup
                                     axisGroupType
                                     load
+                                    normLoad
                                     excess
                                     cost
                                 }
                                 cargoWeight
+                            }
+                            paths {
+                                name
+                                length
                             }
                         }                        
                         carrier {
@@ -116,9 +122,6 @@ export class CalculationsListComponent implements OnInit {
                             recieverBIK
                             recieverOGRN
                             recieverCorrespondentAccount                       
-                        }
-                        paths {
-                            name
                         }
                         logs
                     }

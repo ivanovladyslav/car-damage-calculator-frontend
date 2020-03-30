@@ -56,7 +56,19 @@
 
 .doc {
     &-reciever {
+        tr, td {
+            border: 2px solid black;
+        }
         font-size: 12px;
+        &__header {
+            width: 90px;
+            &-content {
+                padding: 10px 5px;
+                font-weight: bold;
+                text-decoration: black;
+                text-decoration-line: underline;
+            }
+        }
     }
     &-address {
         font-size: 12px;
@@ -79,6 +91,18 @@
             }
         }
         &__header {
+            &-number {
+                width: 20px;
+            }
+            &-vehicle-count {
+                width: 50px;
+            }
+            &-trip-count {
+                width: 50px;
+            }
+            &-model, &-path {
+                width: 190px;
+            }
             &--border-r {
                 border-right: 1px solid black;                
             }
