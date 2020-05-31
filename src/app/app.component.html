@@ -1,9 +1,13 @@
-<div class="header">
+<div class="header container">
     <div class="header__auth">
-        <a class="header__auth-link">Войти</a>
+        <!-- <a class="header__auth-link">Войти</a> -->
+        <div class="header__auth-profile">
+            <div class="header__auth-avatar"></div>
+            <div class="header__auth-name">ИмяПрофиля</div>
+        </div>
     </div>
 </div>
-<div class="container">
+<div class="container wrapper">
     <router-outlet name="dashboard"></router-outlet>
     <div>
         <router-outlet></router-outlet>

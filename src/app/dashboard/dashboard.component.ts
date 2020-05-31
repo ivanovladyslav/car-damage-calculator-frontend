@@ -8,11 +8,15 @@ import { MenuItem } from 'primeng/api';
 export class DashboardComponent {
     items: MenuItem[];
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.items = [
             { 
-                label: 'Транспортные средства',
+                label: 'Тягачи',
                 routerLink: ['/dashboard/vehicle']
+            },
+            { 
+                label: 'Прицепы',
+                routerLink: ['/dashboard/trailer']
             },
             { 
                 label: 'Маршруты',
@@ -21,6 +25,10 @@ export class DashboardComponent {
             { 
                 label: 'Грузоперевозчики',
                 routerLink: ['/dashboard/carrier']
+            },
+            {
+                label: 'Расчеты',
+                routerLink: ['/dashboard/calculations']
             },
             { 
                 label: 'Расчет',

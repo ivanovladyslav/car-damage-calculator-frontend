@@ -6,6 +6,7 @@ import { CarrierComponent } from '@app/dashboard/carrier/carrier.component';
 import { VehicleComponent } from '@app/dashboard/vehicle/vehicle.component';
 import { CalculatorComponent } from '@app/dashboard/calculator/calculator.component';
 import { PathComponent } from './path/path.component';
+import { CalculationsListComponent } from './calculations-list/calculations-list.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,13 @@ const routes: Routes = [
         ]
     },
     {
+        path: 'dashboard/trailer',
+        children: [
+            { path: '', component: VehicleComponent },
+            { path: '', component: DashboardComponent, outlet: 'dashboard' }
+        ]
+    },
+    {
         path: 'dashboard/calculator',
         children: [
             { path: '', component: CalculatorComponent },
@@ -37,6 +45,13 @@ const routes: Routes = [
         path: 'dashboard/path',
         children: [
             { path: '', component: PathComponent },
+            { path: '', component: DashboardComponent, outlet: 'dashboard' }
+        ]
+    },
+    {
+        path: 'dashboard/calculations',
+        children: [
+            { path: '', component: CalculationsListComponent },
             { path: '', component: DashboardComponent, outlet: 'dashboard' }
         ]
     }

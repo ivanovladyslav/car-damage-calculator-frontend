@@ -14,8 +14,6 @@ export class CalculatorComponent {
     @ViewChild(CarrierComponent, { static: false }) carrierForm: CarrierComponent;
 
     cargoWeight: string;
-    vehicles: Array<Vehicle> = [];
-    paths: Array<Path> = [];
     logs: Array<string>;
     calculation: any;
     showDocument: boolean = false;

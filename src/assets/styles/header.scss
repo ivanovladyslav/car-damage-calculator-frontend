@@ -1,14 +1,31 @@
 .header {
     height: 30px;
-    padding: 5px;
+    padding: 20px 0;
     width: 100%;
-    background-color: #007ad9;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     &__auth {
         float: right;
+        background-color: lightgrey;
+        padding: 10px;
+        border-radius: 5px;
         &-link {
-            color: white;
+            color: black;
             cursor: pointer;
+        }
+        &-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            background-color: slateblue;
+            display: inline-block;
+            float: left;
+        }
+        &-name {
+            vertical-align: middle;
+            float:left;
+            height:30px;
+            padding: 5px;
+            font-weight: 600;
         }
     }
 }

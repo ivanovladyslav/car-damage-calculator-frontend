@@ -61,11 +61,11 @@ export class VehicleComponent implements OnInit {
         this.vehicles = data.vehicles;
     }
 
-    filterVehicles(event) {
+    filterVehicles(event): void {
         this.filteredVehicles = [];
-        for(let i = 0; i < this.vehicles.length; i++) {
+        for (let i = 0; i < this.vehicles.length; i++) {
             let v = this.vehicles[i];
-            if(v.name.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+            if (v.name.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
                 this.filteredVehicles.push(v);
             }
         }
